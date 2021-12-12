@@ -30,3 +30,8 @@ def test_pandas_to_list_of_dict():
     c = pandas_to_list_of_dict(b)
     expected_list = [{"a": 1}, {"a": 2}]
     assert expected_list == c
+    a = {"a": [1, 2], "b": [3, 4]}
+    b = pd.DataFrame.from_dict(a)
+    c = pandas_to_list_of_dict(b)
+    expected_list = [{"a": 1, "b": 3}, {"a": 2, "b": 4}]
+    assert expected_list == c
