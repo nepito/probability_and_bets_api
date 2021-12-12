@@ -13,7 +13,10 @@ def test_read_root():
     assert response.status_code == 200
     assert response.json() == {"msg": "Hello World from GECI!"}
 
+
 EXPECTED = [{"a": [1, 2]}, {"a": [1, 2], "b": [3, 4]}, {"a": [1, 2], "b": [3, 4], "c": [5, 6]}]
+
+
 @pytest.mark.parametrize("expected", EXPECTED)
 def test_pandas_to_dict(expected):
     b = pd.DataFrame.from_dict(expected)
