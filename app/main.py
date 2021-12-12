@@ -14,7 +14,7 @@ to_render = [matches.iloc[i, :].to_dict() for i in range(len(matches))]
 
 
 def pandas_to_dict(a):
-    pass
+    return {"a": [1, 2]}
 
 
 @app.get("/")
