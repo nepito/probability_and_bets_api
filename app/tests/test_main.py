@@ -24,7 +24,12 @@ def test_pandas_to_dict(expected):
     assert expected == c
 
 
-EXPECTED = [({"a": [1, 2]}, [{"a": 1}, {"a": 2}]), ({"a": [1, 2], "b": [3, 4]}, [{"a": 1, "b": 3}, {"a": 2, "b": 4}])]
+EXPECTED = [
+    ({"a": [1, 2]}, [{"a": 1}, {"a": 2}]),
+    ({"a": [1, 2], "b": [3, 4]}, [{"a": 1, "b": 3}, {"a": 2, "b": 4}]),
+]
+
+
 @pytest.mark.parametrize("dict_of_list, expected_list", EXPECTED)
 def test_pandas_to_list_of_dict(dict_of_list, expected_list):
     b = pd.DataFrame.from_dict(dict_of_list)
