@@ -17,7 +17,7 @@ def pandas_to_dict(a):
     return {columna: list(a[columna].values) for columna in a.columns}
 
 def pandas_to_list_of_dict(a):
-    return [{"a": 1}, {"a": 2}]
+    return [a.iloc[i, :].to_dict() for i in range(len(a))]
 
 @app.get("/")
 def read_root():
