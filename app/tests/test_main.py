@@ -22,3 +22,11 @@ def test_pandas_to_dict(expected):
     b = pd.DataFrame.from_dict(expected)
     c = pandas_to_dict(b)
     assert expected == c
+
+
+def test_pandas_to_list_of_dict():
+    a = {"a": [1, 2]}
+    b = pd.DataFrame.from_dict(a)
+    c = pandas_to_dict(b)
+    expected_list = [{"a": 1}, {"a": 2}]
+    assert expected_list == c
