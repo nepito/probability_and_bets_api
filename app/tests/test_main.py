@@ -18,3 +18,7 @@ def test_pandas_to_dict():
     b = pd.DataFrame.from_dict(a)
     c = pandas_to_dict(b)
     assert a == c
+    a = {"a": [1, 2], "b": [3, 4]}
+    b = pd.DataFrame.from_dict(a)
+    c = pandas_to_dict(b)
+    assert a == c
