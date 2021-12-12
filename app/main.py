@@ -10,7 +10,6 @@ path_2 = f"data/predictions_{league_season_round}.csv"
 bets = pd.read_csv(path_1)
 predicionts = pd.read_csv(path_2)
 matches = bets.join(predicionts.set_index("id_match"), on="id_match")
-to_render = [matches.iloc[i, :].to_dict() for i in range(len(matches))]
 
 
 def pandas_to_dict(a):
@@ -23,4 +22,5 @@ def pandas_to_list_of_dict(a):
 
 @app.get("/")
 def read_root():
-    return {"msg": "Hello World from GECI!"}
+    to_render = pandas_to_list_of_dict(matches)
+    return {"response": to_render}
