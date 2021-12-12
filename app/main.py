@@ -12,6 +12,8 @@ predicionts = pd.read_csv(path_2)
 matches = bets.join(predicionts.set_index("id_match"), on="id_match")
 to_render = [matches.iloc[i, :].to_dict() for i in range(len(matches))]
 
+def pandas_to_dict(a):
+    pass
 @app.get("/")
 def read_root():
     return {"msg": "Hello World from GECI!"}
