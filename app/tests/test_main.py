@@ -12,8 +12,9 @@ def test_read_root():
     assert response.status_code == 200
     assert response.json() == {"msg": "Hello World from GECI!"}
 
+
 def test_pandas_to_dict():
-    a = {"a": [1,2]}
+    a = {"a": [1, 2]}
     b = pd.DataFrame.from_dict(a)
     c = pandas_to_dict(b)
-    pass
+    assert a == c
