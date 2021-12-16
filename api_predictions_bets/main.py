@@ -5,12 +5,22 @@ from fastapi import FastAPI, Body
 
 app = FastAPI()  # pragma: no mutate
 
-league_season_round = "78_2021_16"
 def get_matches(league_season_round):
     conn = requests.get(f"https://q98w4w.deta.dev/{league_season_round}")
     res = conn.json()
     bets = pd.DataFrame.from_dict(res)
     conn = requests.get(f"https://uxxery.deta.dev/{league_season_round}")
+    res = conn.json()
+    predicionts = pd.DataFrame.from_dict(res)
+    matches = bets.join(predicionts.set_index("id_match"), on="id_match")
+    return matches
+
+
+def get_matches_by_country(country):
+    conn = requests.get(f"https://q98w4w.deta.dev/liga/{country}")
+    res = conn.json()
+    bets = pd.DataFrame.from_dict(res)
+    conn = requests.get(f"https://uxxery.deta.dev/liga/{country}")
     res = conn.json()
     predicionts = pd.DataFrame.from_dict(res)
     matches = bets.join(predicionts.set_index("id_match"), on="id_match")
@@ -28,5 +38,12 @@ def pandas_to_list_of_dict(a):
 @app.get("/{league_season_round}")
 def read_root(league_season_round):
     matches = get_matches(league_season_round)
+    to_render = pandas_to_list_of_dict(matches)
+    return {"response": to_render}
+
+
+@app.get("/liga/{country}")
+def return_data_to_render(country):
+    matches = get_matches_by_country(country)
     to_render = pandas_to_list_of_dict(matches)
     return {"response": to_render}
