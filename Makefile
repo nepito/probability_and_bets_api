@@ -1,6 +1,6 @@
 all: run
 
-.PHONY: clean build run
+.PHONY: clean build push run
 
 clean:
 	rm --force --recursive app/__pycache__
