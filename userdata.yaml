@@ -1,0 +1,5 @@
+packages_update: true
+packages:
+  - docker.io
+runcmd:
+  - docker run --rm --detach --name predictions --publish 80:80 nepolin/api_predictions
