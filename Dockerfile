@@ -12,6 +12,6 @@ RUN pip install \
     requests \
     uvicorn
 RUN curl -fsSL https://get.deta.dev/cli.sh | sh
-WORKDIR /app
-COPY ./app .
+WORKDIR /api_predictions_bets
+COPY ./api_predictions_bets .
 CMD ["make", "run"]
