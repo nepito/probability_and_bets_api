@@ -1,3 +1,13 @@
+all: run
+
+.PHONY: clean build run
+
 clean:
 	rm --force --recursive app/__pycache__
 	rm --force --recursive app/tests/__pycache__
+
+build:
+	docker build --tag nepolin/api_predictions .
+
+run: build
+	docker run --rm --detach --name predictions --publish 80:80 nepolin/api_predictions
