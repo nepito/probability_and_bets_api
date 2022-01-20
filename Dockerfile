@@ -9,7 +9,8 @@ RUN pip install \
     pylint \
     pytest \
     pytest-cov \
-    requests
+    requests \
+    uvicorn
 RUN curl -fsSL https://get.deta.dev/cli.sh | sh
 WORKDIR /app
 COPY ./app .
