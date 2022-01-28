@@ -1,5 +1,5 @@
 resource "digitalocean_domain" "macer" {
-	name = "macer.tech"
+	name = "nies.macer.tech"
 }
 
 resource "digitalocean_record" "www" {
