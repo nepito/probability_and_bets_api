@@ -1,0 +1,43 @@
+---
+- hosts: all
+  tasks:
+    - name: Configura huso horario
+      timezone:
+        name: America/Los_Angeles
+      remote_user: root
+      become: yes
+    - name: Actualiza paquetes del sistema operativo
+      apt:
+        upgrade: dist
+        update_cache: yes
+      become: yes
+      notify: Reinicia servidor
+    - name: Instala Docker
+      apt:
+        name: "docker.io"
+        state: present
+      become: yes
+    - name: Instala Git
+      apt:
+        name: "git"
+        state: present
+      become: yes
+    - name: Instala Make
+      apt:
+        name: "make"
+        state: present
+      become: yes
+    - name: Instala pip
+      apt:
+        name: "python3-pip"
+        state: present
+      become: yes
+    - name: Copia los archivos de código
+      copy:
+        src: api_predictions_bets
+        dest: "{{ ansible_facts.user_dir }}"
+        mode: +x
+  handlers:
+    - name: Reinicia servidor
+      reboot:
+      become: yes

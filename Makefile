@@ -14,3 +14,6 @@ push: build
 
 run: build
 	docker run --rm --detach --name predictions --publish 80:80 nepolin/api_predictions
+	
+playbook:
+	ansible-playbook -u root -i 143.198.228.215, --private-key "~/.ssh/id_rsa" playbook.yaml
