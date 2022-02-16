@@ -5,6 +5,6 @@ resource "digitalocean_domain" "macer" {
 resource "digitalocean_record" "www" {
 	domain = digitalocean_domain.macer.id
 	type = "A"
-	name = "www"
+	name = "nies"
 	value = "${digitalocean_droplet.web.ipv4_address}"
 }
